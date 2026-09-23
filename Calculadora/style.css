@@ -1,0 +1,161 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+    padding: 40px 16px;
+    background: #d9cfd6;
+}
+
+.pagina {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.cartao-esquerda {
+    width: 50%;
+    padding: 40px;
+    background-color: white;
+    border-radius: 16px;
+}
+
+.cartao-esquerda h1 {
+    margin-bottom: 24px;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #6b1f27;
+}
+
+.texto-descricao {
+    margin-bottom: 24px;
+    color: #5c5c5c;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.campo {
+    margin-bottom: 16px;
+}
+
+#opcao_vinho{
+    margin-bottom: 20px;
+}
+
+#slc_opcao, #select_vinho{
+    background-color: rgb(66, 9, 9) ;
+    color: beige;
+    border-radius: 20px;
+    border: 1px  rgb(66, 9, 9);
+    height: 30px;
+    width: 90px;
+    text-align: center;
+    font-weight: 700;
+}
+select option{
+    border-radius: 20px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f1efec;
+    font-size: 14px;
+}
+
+.btn-calcular{
+    background-color: rgb(66, 9, 9) ;
+    color: beige;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid rgb(66, 9, 9);
+    border-radius: 18px;
+    padding: 5px;
+    width: 180px;
+}
+
+.cartao-direita {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 60%;
+}
+
+.cartao-direita p{
+    margin-top: 10px;
+    text-align: center;
+}
+.card-destaque {
+    height: 180px;
+    background: #7a2430;
+    border-radius: 16px;
+    color: beige;
+}
+
+.card-destaque p{
+    margin-left: 90px;
+    margin-top: 20px;
+    width: 300px;
+    font-weight: bold;
+}
+
+.bloco1,.bloco2{
+    display: flex;
+}
+
+.valor_card{
+    color: #6b1f27;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.valor_card_destaque{
+    font-size: 40px;
+}
+
+.card-pequeno1, .card-pequeno2,.card-pequeno3, .card-pequeno4{
+    width: 70%;
+    min-height: 140px;
+    background-color: white;
+    color: #5c5c5c;
+    font-size: 15px;
+    border-radius: 16px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+#divMsgFaturamento{
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 32px;
+}
+
+#divMsgPercaDinheiro, #divMsgLucroSemProduto, #divMsgToneladaSemProduto, #divMsgGarrafaComProduto{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+
+}
+
+@media (max-width: 720px) {
+    .pagina {
+        flex-direction: column;
+    }
+
+    .cartao-esquerda,
+    .cartao-direita {
+        width: 100%;
+    }
+}
