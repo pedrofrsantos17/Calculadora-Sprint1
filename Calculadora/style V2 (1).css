@@ -60,6 +60,22 @@ body {
     text-align: center;
     font-weight: 700;
 }
+#select_tipo{
+    background-color: rgb(66, 9, 9) ;
+    color: beige;
+    border-radius: 20px;
+    border: 1px  rgb(66, 9, 9);
+    height: 30px;
+    width: 120px;
+    text-align: center;
+    font-weight: 700;
+}
+.info {
+    color: rgb(110, 110, 109);
+    font-size: 12px;
+    margin :2px 0px;
+}
+
 select option{
     border-radius: 20px;
 }
