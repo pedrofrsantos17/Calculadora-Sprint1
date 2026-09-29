@@ -8,18 +8,17 @@ CREATE TABLE empresa (
     cnpj_empresa    CHAR(18) NOT NULL UNIQUE,
     codigo_cadastro VARCHAR(20) NOT NULL UNIQUE,
     area_hectares   DECIMAL(6,2),
-    ativo           TINYINT(1) NOT NULL DEFAULT 1,
     dt_cadastro     DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO empresa (nome_empresa, cnpj_empresa, codigo_cadastro, area_hectares, ativo) VALUES
-('Vinícola Vale Verde',        '24.999.432/0001-16', 'VVV-2026-01', 18.50, 1),
-('Quinta do Sol Vinhos Finos', '09.239.557/0001-54', 'QSV-2026-02', 22.00, 1),
-('Adega Serrana',              '15.053.665/0001-30', 'ADS-2026-03', 30.00, 0),
-('Vinhedos de Altitude',       '86.475.320/0001-13', 'VDA-2026-04', 28.00, 1),
-('Espumantes Dom Bosco',       '57.646.469/0001-10', 'EDB-2026-05', 20.00, 0),
-('Cantina Rota das Uvas',      '65.753.786/0001-63', 'CRU-2026-06', 20.00, 1),
-('Terroir dos Pampas',         '12.147.968/0001-24', 'TDP-2026-07', 25.00, 0);
+INSERT INTO empresa (nome_empresa, cnpj_empresa, codigo_cadastro, area_hectares) VALUES
+('Vinícola Vale Verde',        '24.999.432/0001-16', 'VVV-2026-01', 18.50),
+('Quinta do Sol Vinhos Finos', '09.239.557/0001-54', 'QSV-2026-02', 22.00),
+('Adega Serrana',              '15.053.665/0001-30', 'ADS-2026-03', 30.00),
+('Vinhedos de Altitude',       '86.475.320/0001-13', 'VDA-2026-04', 28.00),
+('Espumantes Dom Bosco',       '57.646.469/0001-10', 'EDB-2026-05', 20.00),
+('Cantina Rota das Uvas',      '65.753.786/0001-63', 'CRU-2026-06', 20.00),
+('Terroir dos Pampas',         '12.147.968/0001-24', 'TDP-2026-07', 25.00);
 
 
 
@@ -132,6 +131,10 @@ WHERE fk_empresa = 4;
 SELECT nome_usuario, email, ativo
 FROM usuario
 WHERE fk_empresa = 4;
+
+-- 2.2) Cadastro de usuário: descobrir a empresa pelo código de cadastro.
+
+SELECT id_empresa FROM empresa WHERE codigo_cadastro = 'VDA-2026-04';
 
 -- 3) Leituras com nome da vinícola e status calculado da lavoura.
 --    Limites do míldio (18-25°C, umidade >= 90%).
