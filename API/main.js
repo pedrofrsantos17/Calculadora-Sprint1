@@ -20,9 +20,9 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'root',
-            password: ' Stark110521*',
-            database: 'TesteAPI',
+            user: 'user_insert4',
+            password: 'urubu100',
+            database: 'SenseNoirteste',
             port: 3306
         }
     ).promise();
@@ -51,22 +51,22 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        const sensorDigital = parseInt(valores[0]);
-        const sensorAnalogico = parseFloat(valores[1]);
+        const sensorUmidade = parseInt(valores[0]);
+        const sensorTemperatura = parseFloat(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
-        valoresSensorAnalogico.push(sensorAnalogico);
-        valoresSensorDigital.push(sensorDigital);
+        valoresSensorAnalogico.push(sensorTemperatura);
+        valoresSensorDigital.push(sensorUmidade);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO DHT11_Dados (umidade, temperatura) VALUES (4, 8)',
-                [sensorAnalogico, sensorDigital]
+                'INSERT INTO leitura_sensor ( temperatura, umidade, fk_sensor) VALUES (?,?,?)',
+                [sensorTemperatura, sensorUmidade,2]
             );
-            console.log("valores inseridos no banco: ", sensorAnalogico + ", " + sensorDigital);
+            console.log("valores inseridos no banco: ", sensorTemperatura + ", " + sensorUmidade);
 
         }
 
@@ -80,8 +80,8 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresSensorAnalogico,
-    valoresSensorDigital
+    valoresSensortemperatura,
+    valoresSensorumidade
 ) => {
     const app = express();
 
@@ -98,29 +98,29 @@ const servidor = (
     });
 
     // define os endpoints da API para cada tipo de sensor
-    app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresSensorAnalogico);
+    app.get('/sensores/temperatura', (_, response) => {
+        return response.json(valoresSensortemperatura);
     });
-    app.get('/sensores/digital', (_, response) => {
-        return response.json(valoresSensorDigital);
+    app.get('/sensores/umidade', (_, response) => {
+        return response.json(valoresSensorumidade);
     });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
-    const valoresSensorAnalogico = [];
-    const valoresSensorDigital = [];
+    const valoresSensortemperatura = [];
+    const valoresSensorumidade = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorAnalogico,
-        valoresSensorDigital
+        valoresSensortemperatura,
+        valoresSensorumidade
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorAnalogico,
-        valoresSensorDigital
+        valoresSensortemperatura,
+        valoresSensorumidade
     );
 })();

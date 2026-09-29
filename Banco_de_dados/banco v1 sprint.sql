@@ -164,3 +164,4 @@ JOIN leitura_sensor l ON l.id_leitura = a.fk_leitura
 JOIN sensor s ON s.id_sensor = l.fk_sensor
 JOIN empresa e ON e.id_empresa = s.fk_empresa
 ORDER BY a.dt_alerta DESC;
+
